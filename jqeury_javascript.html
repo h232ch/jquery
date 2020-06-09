@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <script type="text/javascript">
+            function addEvent(target, eventType,eventHandler, useCapture) {
+                if (target.addEventListener) { // W3C DOM
+                    target.addEventListener(eventType,eventHandler,useCapture?useCapture:false);
+                } else if (target.attachEvent) {  // IE DOM
+                    var r = target.attachEvent("on"+eventType, eventHandler);
+                }
+            }
+ 
+     
+            function clickHandler(event) {
+                var nav = document.getElementById('navigation');
+                for(var i = 0; i < nav.childNodes.length; i++) {
+                    var child = nav.childNodes[i];
+                    if(child.nodeType==3)
+                        continue;
+                    child.className = '';
+                }
+                event.target.className = 'selected';
+            }
+  
+            addEvent(window, 'load', function(eventObj) {
+                var nav = document.getElementById('navigation');
+                for(var i = 0; i < nav.childNodes.length; i++) {
+                    var child = nav.childNodes[i];
+                    if(child.nodeType==3)
+                        continue;
+                    addEvent(child, 'click', clickHandler);
+                    
+                }
+                /* addEvent는 웹페이지에서 어떤 동작이 발생할때 어떤것을 하라고 지시하는 기능임 즉 최초 로드할떄 혹은 클릭할때 등 해당 펑션을 실행함--!>
+                    <!-- addEvent는 target(window_웹피이지), eventType(웹페이지 상태, Load의 경우 웹페이지에서
+                         어떤것을 불러오는 개념임), eventHandler(동착핸들러) */
+            })
+        </script>
+        <style type="text/css">
+            
+            #navigation li {
+                list-style:none;
+                float:left;
+                padding:5px;
+            }
+            #navigation {
+                cursor:pointer;
+            }
+            #navigation .selected {
+                background-color:red;
+                color:white;
+            }
+        </style>
+    </head>
+    <body>
+        <ul id="navigation">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>javascript</li>
+            <li>jQuery</li>
+            <li>PHP</li>
+            <li>mysql</li>
+        </ul>
+    </body>
+</html>

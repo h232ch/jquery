@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script type="text/javascript">
+            function clickHandler(e) {
+                alert('thank you');
+            }
+            $('#click_me').live('click', clickHandler); //ready를 사용하여 엘리먼트에 이벤트 설치 가능여부를 파악하는데 live는 그런게없음,
+            // 즉 화면상에 존재하지 않는 엘리먼트도 이벤트를 생성함 -> 성능상에 문제가 발생될 수 있음
+            $('#remove_event').live('click', function(e) {
+                $('#click_me').die('click', clickHandler);
+            });
+            $('#trigger_event').live('click', function(e) {
+                $('#click_me').trigger('click');
+            });
+        </script>
+    </head>
+    <body>
+        <input id="click_me" type="button" value="click me" />
+    <input id="remove_event" type="button" value="unbind" />
+    <input id="trigger_event" type="button" value="trigger" />
+    </body>
+</html>

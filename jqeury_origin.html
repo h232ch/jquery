@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script type="text/javascript">
+            $('#navigation li').live('click', function() { // id값이 navigation에서 li값을 가져옴
+                $('#navigation li').removeClass('selected'); // 모든 li의 seleted라는 클래스명을 삭제하고, this(클릭한 엘리먼트)에 클래스는 seleted를 적용함
+                // for문을 쓰지않고있는데 이부분은 jqeury에 이미 적용되어있음
+                $(this).addClass('selected');
+            })
+        </script>
+        <style type="text/css">
+            #navigation li {
+                list-style:none;
+                float:left;
+                padding:5px;
+            }
+            #navigation {
+                cursor:pointer;
+            }
+            #navigation .selected {
+                background-color:red;
+                color:white;
+            }
+        </style>
+    </head>
+    <body>
+        <ul id="navigation">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>javascript</li>
+            <li class="selected">jQuery</li>
+            <li>PHP</li>
+            <li>mysql</li>
+        </ul>
+    </body>
+</html>
